@@ -9,7 +9,7 @@ const App = () => {
   const [weather, setWeather] = useState("");
 
   const search = (event) => {
-    if (event.key == "Enter") {
+    if (event.key === "Enter") {
       fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
         .then((data) => data.json())
         .then((data) => {
@@ -76,21 +76,20 @@ const App = () => {
 
         {typeof weather.main != "undefined" ? (
           <div className="location-box">
-          <div className="location">
-            {weather.name}, {weather.sys.country}
-          </div>
-          <div className="date">{TOdaydate()}</div>
+            <div className="location">
+              {weather.name}, {weather.sys.country}
+            </div>
+            <div className="date">{TOdaydate()}</div>
             <div className="weather-box">
               <div className="temp">{Math.round(weather.main.temp)}°C</div>
               <div className="weather">{weather.weather[0].main}</div>
             </div>
             <div className="information">
               <div className="grid-item">
-                0{new Date(weather.sys.sunrise*1000).getHours()} : {new Date(weather.sys.sunrise*1000).getMinutes()} A.M.
+                0{new Date(weather.sys.sunrise * 1000).getHours()} :{" "}
+                {new Date(weather.sys.sunrise * 1000).getMinutes()} A.M.
               </div>
-              <div className="grid-item">
-                {weather.wind.speed} mph
-              </div>
+              <div className="grid-item">{weather.wind.speed} mph</div>
               <div className="grid-item">
                 {Math.round(weather.main.temp_max)}/
                 {Math.round(weather.main.temp_min)} °C
